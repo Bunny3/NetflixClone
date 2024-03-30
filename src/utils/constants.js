@@ -6,8 +6,14 @@ export const API_OPTION = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NDAwMTBjOGNmMTIzZmQzZDFmODc4N2NlZWU3NjI0NiIsInN1YiI6IjY0ZWMwNWEyODM5MDE4MDEzY2RiNjczOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.z4aVKwTpD7hmx_zXNn61ky68IGpZ0ukoeeK2lKCP-L0'
+    Authorization: 'Bearer '+process.env.REACT_APP_TMDB_KEY
   }
 };
 
 export const IMG_CND = "https://image.tmdb.org/t/p/w780"
+
+export const SUPPORTED_LANGUAGES = [{identifier: "en", name:"English"},
+                                    {identifier: "hindi",name:"Hindi"},
+                                    {identifier: "spanish", name: "Spanish"}];
+
+ export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
