@@ -1,10 +1,8 @@
+import validator from 'validator';
 export const checkValidData = (email, password) => {
 
-  const isEmailValid =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
-  // const isPasswordValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(password);
+  if(!validator.isEmail(email)) return "Email Id is not valid";
+  if(!validator.isStrongPassword(password)) return "Password not Strong \n minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1";
 
-
-  if(!isEmailValid) return "Email Id is not valid";
-  // if(!isPasswordValid) return "Password is not valid";
   return null;
 }

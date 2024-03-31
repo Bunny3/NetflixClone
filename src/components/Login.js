@@ -20,13 +20,13 @@ const Login = () => {
   }
   const handeButtonClick = () => {
     //Validate the form data
+    if(!isSignInForm) {
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
-
-    
     if(message) {
       return;
     }
+  }
 
     //sign In/Sign Up
     if(!isSignInForm) {
@@ -76,7 +76,7 @@ const Login = () => {
         alt='logo'
         ></img>
       </div>
-      <form onSubmit={(e)=>e.preventDefault()} className='w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-80'>
+      <form onSubmit={(e)=>e.preventDefault()} className='w-[90%] lg:w-[50%] md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-80'>
         <h1 className='font-bold text-3xl py-4'>{isSignInForm?"Sign In":"SignUp"}</h1>
         {!isSignInForm && <input ref={name} type='text' placeholder='Full Name' className='p-4 my-4 w-full bg-gray-800 rounded-lg'/> }
         <input ref={email} type="text" placeholder='Email Address' className='p-4 my-4 w-full bg-gray-700 rounded-lg'/>
