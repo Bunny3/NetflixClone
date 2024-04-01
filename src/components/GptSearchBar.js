@@ -23,41 +23,39 @@ const GptSearchBar = () => {
     return json.results;
   }
   const handleGptSearchClick = async() => {
-    //Make an api call to GPT API and get Movie results -> chat gpt UI
-    // const gptQuery = "Act as a Movie Recomendation System and suggest some movies for the query : "+ searchText.current.value + ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil gaya";
-    // async function main() {
-    //   const chatCompletion = await openai.chat.completions.create({
-    //     messages: [{ role: 'user', content: gptQuery }],
-    //     model: 'gpt-3.5-turbo',
-    //   });
-    //   if(!chatCompletion.choices) {
-    //     console.log("Error");
-    //   }
-    //   const gptMovies = chatCompletion.choices?.[0]?.message?.content.split(",");
+    // Make an api call to GPT API and get Movie results -> chat gpt UI
 
-    //   //Search for each movie :
-    //   const promiseArray = gptMovies.map(movie => searchMovieTMDB(movie));
-    //   const tmdbResults = await Promise.all(promiseArray);
-    //   console.log(tmdbResults);
-    // }
+    //Inorder to Comment ChatGPT comment the lines the block till line 47
+    const gptQuery = "Act as a Movie Recomendation System and suggest some movies for the query : "+ searchText.current.value + ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil gaya";
+    async function main() {
+      const chatCompletion = await openai.chat.completions.create({
+        messages: [{ role: 'user', content: gptQuery }],
+        model: 'gpt-3.5-turbo',
+      });
+      if(!chatCompletion.choices) {
+        console.log("Error");
+      }
+      const gptMovies = chatCompletion.choices?.[0]?.message?.content.split(",");
+
+      //Search for each movie :
+      const promiseArray = gptMovies.map(movie => searchMovieTMDB(movie));
+      const tmdbResults = await Promise.all(promiseArray);
+      // console.log(tmdbResults);
+      dispatch(addGptMovieResult({movieNames:gptMovies,movieResults:tmdbResults}));
+    }
     
-    // main();
-
-    //Here  I am using the recomendation of the movie API from tmdb
-    const getMovieData  = await searchMovieTMDB(searchText.current.value);
-    const data = await Promise.resolve(getMovieData);
-    dispatch(addGptSearchResult(data));
-    const gptMovies = data.map(movie => [movie.id,movie.title]);    
-    //Recomendation:
-    const recomendationPromiseArray = await gptMovies.map(movie=>recomendation(movie[0]));
-    const recomendationResults = await Promise.all(recomendationPromiseArray);
-    const gptMoviesName = gptMovies.map(movie=>movie[1]);
-    //Search for each movie :
-    // const promiseArray = await gptMovies.map(movie => searchMovieTMDB(movie));
-    // const tmdbResults = await Promise.all(promiseArray);
-    // console.log(tmdbResults);
-    // dispatch(addGptMovieResult({movieNames:gptMovies,movieResults:tmdbResults}));
-    dispatch(addGptMovieResult({movieNames:gptMoviesName,movieResults:recomendationResults}));
+    main();
+// Comment Till here
+    // //Recomendation Code block:
+    // const getMovieData  = await searchMovieTMDB(searchText.current.value);
+    // const data = await Promise.resolve(getMovieData);
+    // dispatch(addGptSearchResult(data));
+    // const gptMovies = data.map(movie => [movie.id,movie.title]);    
+    // const recomendationPromiseArray = await gptMovies.map(movie=>recomendation(movie[0]));
+    // const recomendationResults = await Promise.all(recomendationPromiseArray);
+    // const gptMoviesName = gptMovies.map(movie=>movie[1]);
+    // dispatch(addGptMovieResult({movieNames:gptMoviesName,movieResults:recomendationResults}));
+    // //Comment Till here for recommendation code block
   }
   return (
     <div className='pt-[35%] md:pt-[10%] flex justify-center'>
