@@ -20,13 +20,12 @@ const Login = () => {
   }
   const handeButtonClick = () => {
     //Validate the form data
-    if(!isSignInForm) {
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
     if(message) {
       return;
     }
-  }
+  
 
     //sign In/Sign Up
     if(!isSignInForm) {
@@ -81,7 +80,7 @@ const Login = () => {
         {!isSignInForm && <input ref={name} type='text' placeholder='Full Name' className='p-4 my-4 w-full bg-gray-800 rounded-lg'/> }
         <input ref={email} type="text" placeholder='Email Address' className='p-4 my-4 w-full bg-gray-700 rounded-lg'/>
         <input ref={password} type="password" placeholder='Password' className='p-4 my-4 w-full bg-gray-700 rounded-lg'/>
-        <p>{errorMessage}</p>
+        <p className='text-red-900'>{errorMessage}</p>
         <button className='p-4 my-6 bg-red-700 w-full rounded-lg' onClick={handeButtonClick}>
           {isSignInForm ?"Sign In" : "Sign up"}</button>
         <p className='py-4 cursor-pointer' onClick={toggleSignUpForm}>{isSignInForm?"New to Netflix? Sign up Now":"Already registered? Sign In Now"}</p>
