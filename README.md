@@ -2,14 +2,19 @@ Netflix Clone
 
 Glimpse:
 
+Login
 ![Alt text](/resources/images/Login.png?raw=true "Login")
 
+Main Page
 ![Alt text](/resources/images/MainPage.png?raw=true "Main Page")
 
+Category
 ![Alt text](/resources/images/MovieList.png?raw=true "List of Movies")
 
+Search Recomendation
 ![Alt text](/resources/images/Recomendation.png?raw=true "Search Recomendation")
 
+Recomendation Results
 ![Alt text](/resources/images/SearchResults.png?raw=true "Recomendation results")
 
     Create React App
